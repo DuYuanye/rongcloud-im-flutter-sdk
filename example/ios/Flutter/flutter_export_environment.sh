@@ -1,7 +1,7 @@
 #!/bin/sh
 # This is a generated file; do not edit or check into version control.
-export "FLUTTER_ROOT=/Users/zoulu/tool/flutter"
-export "FLUTTER_APPLICATION_PATH=/Users/zoulu/FlutterProjects/git/rongcloud-im-flutter-sdk/example"
+export "FLUTTER_ROOT=/Users/admin/fvm/versions/2.0.6"
+export "FLUTTER_APPLICATION_PATH=/Users/admin/Github/rongcloud-im-flutter-sdk/example"
 export "FLUTTER_TARGET=lib/main.dart"
 export "FLUTTER_BUILD_DIR=build"
 export "SYMROOT=${SOURCE_ROOT}/../build/ios"
