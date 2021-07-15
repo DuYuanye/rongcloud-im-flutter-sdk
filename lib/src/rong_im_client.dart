@@ -1953,7 +1953,7 @@ class RongIMClient {
   /// A 设备网络稳定之后，用户在 A 设备连接成功，B 设备被踢出。
   /// 这个接口就是为这种情况加的。
   /// 设置 enable 为 true 时，SDK 重连的时候发现此时已有别的设备连接成功，不再强行踢出已有设备，而是踢出重连设备。
-  static Future<void> setReconnectKickEnable(bool enable) {
+  static void setReconnectKickEnable(bool enable) {
     _channel.invokeMethod(RCMethodKey.SetReconnectKickEnable, enable);
   }
 
@@ -2020,14 +2020,14 @@ class RongIMClient {
 //  缩略图压缩配置(仅 ios 使用，Android 请在 rc_configuration.xml 文件进行配置)
 //  maxSize:缩略图最大尺寸  minSize:缩略图最小尺寸  quality:缩略图质量压缩比
 //  @remarks 缩略图压缩配置，如果此处设置了配置就按照这个配置进行压缩。如果此处没有设置，会按照 RCConfig.plist 中的配置进行压缩。
-  static Future<void> imageCompressConfig(
+  static void imageCompressConfig(
       double maxSize, double minSize, double quality) {
     Map map = {"maxSize": maxSize, "minSize": minSize, "quality": quality};
     _channel.invokeMethod(RCMethodKey.ImageCompressConfig, map);
   }
 
   /// typing 状态更新的时间，默认是 6s (仅 ios 使用，Android 请在 rc_configuration.xml 文件进行配置)
-  static Future<void> typingUpdateSeconds(int typingUpdateSeconds) {
+  static void typingUpdateSeconds(int typingUpdateSeconds) {
     Map map = {"typingUpdateSeconds": typingUpdateSeconds};
     _channel.invokeMethod(RCMethodKey.TypingUpdateSeconds, map);
   }
@@ -2595,7 +2595,7 @@ class RongIMClient {
   //数据库打开（调用 connect 之后回调）
   static Function(int? status)? onDatabaseOpened;
 
-  static Future<void> _addNativeMethodCallHandler() {
+  static void _addNativeMethodCallHandler() {
     _channel.setMethodCallHandler(_methodCallHandler);
   }
 
