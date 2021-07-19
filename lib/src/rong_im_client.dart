@@ -1,6 +1,7 @@
 import 'package:flutter/services.dart';
 import 'package:rongcloud_im_plugin/src/info/history_message_option.dart';
 import 'package:rongcloud_im_plugin/src/info/send_message_option.dart';
+import 'package:rongcloud_im_plugin/src/message/cmd_message.dart';
 import 'package:rongcloud_im_plugin/src/message/group_notification_message.dart';
 import 'package:rongcloud_im_plugin/src/util/type_util.dart';
 import '../rongcloud_im_plugin.dart';
@@ -124,6 +125,11 @@ class RongIMClient {
     });
     addMessageDecoder(GroupNotificationMessage.objectName, (content) {
       GroupNotificationMessage msg = new GroupNotificationMessage();
+      msg.decode(content);
+      return msg;
+    });
+    addMessageDecoder(CommandMessage.objectName, (content) {
+      CommandMessage msg = new CommandMessage();
       msg.decode(content);
       return msg;
     });
