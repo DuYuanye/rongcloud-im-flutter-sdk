@@ -18,6 +18,7 @@ export 'src/message/combine_message.dart';
 export 'src/message/reference_message.dart';
 export 'src/message/location_message.dart';
 export 'src/message/group_notification_message.dart';
+export 'src/message/cmd_message.dart';
 
 //实体类
 export 'src/info/chatroom_info.dart';
