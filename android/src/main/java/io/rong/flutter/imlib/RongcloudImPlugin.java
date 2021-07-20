@@ -12,7 +12,7 @@ public class RongcloudImPlugin implements MethodCallHandler {
   public static void registerWith(Registrar registrar) {
     final MethodChannel channel = new MethodChannel(registrar.messenger(), "rongcloud_im_plugin");
     channel.setMethodCallHandler(new RongcloudImPlugin());
-    RCIMFlutterWrapper.getInstance().saveContext(registrar.activity().getApplicationContext());
+    RCIMFlutterWrapper.getInstance().saveContext(registrar.context());
     RCIMFlutterWrapper.getInstance().saveChannel(channel);
   }
 
