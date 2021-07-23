@@ -26,6 +26,7 @@ enum ConversationStatus {
 
 class ConversationPage extends StatefulWidget {
   final Map arguments;
+
   ConversationPage({Key key, this.arguments}) : super(key: key);
 
   @override
@@ -67,6 +68,7 @@ class _ConversationPageState extends State<ConversationPage>
   bool isFirstGetHistoryMessages = true;
 
   _ConversationPageState({this.arguments});
+
   @override
   void initState() {
     super.initState();
@@ -205,7 +207,8 @@ class _ConversationPageState extends State<ConversationPage>
       _refreshUI();
     });
 
-    RongIMClient.onMessageSend = (int messageId, int status, int code) async {
+    RongIMClient.onMessageSend =
+        (int messageId, int status, int code, Message msg) async {
       developer.log("messageId:$messageId status:$status code:$code",
           name: pageName);
       Message msg = await RongIMClient.getMessage(messageId);

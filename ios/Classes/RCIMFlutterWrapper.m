@@ -486,19 +486,23 @@
             message = [[RCIMClient sharedRCIMClient] sendMessage:message pushContent:pushContent pushData:pushData successBlock:^(RCMessage *successMessage) {
                 [RCLog i:[NSString stringWithFormat:@"%@, success",LOG_TAG]];
                 NSMutableDictionary *dic = [NSMutableDictionary new];
+                NSString *jsonString = [RCFlutterMessageFactory message2String:successMessage];
                 [dic setObject:@(successMessage.messageId) forKey:@"messageId"];
                 [dic setObject:@(SentStatus_SENT) forKey:@"status"];
                 [dic setObject:@(0) forKey:@"code"];
+                [dic setObject:jsonString forKey:@"message"];
                 if (timestamp > 0) {
                     [dic setObject:@(timestamp) forKey:@"timestamp"];
                 }
                 [ws.channel invokeMethod:RCMethodCallBackKeySendMessage arguments:dic];
             } errorBlock:^(RCErrorCode nErrorCode, RCMessage *errorMessage) {
                 [RCLog e:[NSString stringWithFormat:@"%@, %@",LOG_TAG,@(nErrorCode)]];
+                NSString *jsonString = [RCFlutterMessageFactory message2String:errorMessage];
                 NSMutableDictionary *dic = [NSMutableDictionary new];
                 [dic setObject:@(errorMessage.messageId) forKey:@"messageId"];
                 [dic setObject:@(SentStatus_FAILED) forKey:@"status"];
                 [dic setObject:@(nErrorCode) forKey:@"code"];
+                [dic setObject:jsonString forKey:@"message"];
                 if (timestamp > 0) {
                     [dic setObject:@(timestamp) forKey:@"timestamp"];
                 }

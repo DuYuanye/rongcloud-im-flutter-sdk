@@ -2482,7 +2482,7 @@ class RongIMClient {
   /// [status] 消息发送状态，参见枚举 [RCSentStatus]
   ///
   /// [code] 具体的错误码，0 代表成功
-  static Function(int? messageId, int? status, int? code)? onMessageSend;
+  static Function(int? messageId, int? status, int? code ,Message? msg)? onMessageSend;
 
   ///收到消息的回调，功能和 onMessageReceivedWrapper 一样，两个回调只能实现一个，否则会出现重复收到消息的情况
   ///
@@ -2614,6 +2614,8 @@ class RongIMClient {
           int? status = argMap["status"];
           int? code = argMap["code"];
           int? timestamp = argMap["timestamp"];
+          String? messageString = argMap["message"];
+          Message? msg = MessageFactory.instance!.string2Message(messageString);
           if (timestamp != null && timestamp > 0) {
             Function(int? messageId, int? status, int? code)? finished =
                 sendMessageCallbacks[timestamp];
@@ -2622,12 +2624,12 @@ class RongIMClient {
               sendMessageCallbacks.remove(timestamp);
             } else {
               if (onMessageSend != null) {
-                onMessageSend!(msgId, status, code);
+                onMessageSend!(msgId, status, code,msg);
               }
             }
           } else {
             if (onMessageSend != null) {
-              onMessageSend!(msgId, status, code);
+              onMessageSend!(msgId, status, code,msg);
             }
           }
         }

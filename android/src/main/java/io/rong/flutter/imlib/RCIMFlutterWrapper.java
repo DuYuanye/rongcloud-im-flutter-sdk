@@ -845,10 +845,12 @@ public class RCIMFlutterWrapper {
                                 result.success(null);
                                 return;
                             }
+                            String messageS = MessageFactory.getInstance().message2String(message);
                             Map resultMap = new HashMap();
                             resultMap.put("messageId", message.getMessageId());
                             resultMap.put("status", 30);
                             resultMap.put("code", 0);
+                            resultMap.put("message", messageS);
                             if (timestamp.longValue() > 0) {
                                 resultMap.put("timestamp", timestamp);
                             }
@@ -858,10 +860,12 @@ public class RCIMFlutterWrapper {
 
                         @Override
                         public void onError(Message message, RongIMClient.ErrorCode errorCode) {
+                            String messageS = MessageFactory.getInstance().message2String(message);
                             Map resultMap = new HashMap();
                             resultMap.put("messageId", message.getMessageId());
                             resultMap.put("status", 20);
                             resultMap.put("code", errorCode.getValue());
+                            resultMap.put("message", messageS);
                             if (timestamp.longValue() > 0) {
                                 resultMap.put("timestamp", timestamp);
                             }
