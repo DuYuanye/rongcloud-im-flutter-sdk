@@ -153,7 +153,7 @@ class RongIMClient {
     int? code = resultMap["code"];
     String? userId = resultMap["userId"];
     if (finished != null) {
-      finished(code, userId);
+      await finished(code, userId);
     }
   }
 
